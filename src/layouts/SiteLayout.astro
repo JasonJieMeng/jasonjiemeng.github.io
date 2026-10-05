@@ -1,0 +1,200 @@
+---
+const { title = "About" } = Astro.props;
+
+const navigation = [
+  { label: "About", href: "/" },
+  { label: "Research", href: "/research/" },
+  { label: "Mentoring", href: "/mentoring/" },
+  { label: "Writing", href: "/writing/" },
+  { label: "Miscellaneous", href: "/miscellaneous/" },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Jason Meng — research, writing, mentoring, and other interests."
+    />
+    <title>{title} · Jason Meng</title>
+  </head>
+
+  <body>
+    <div class="site">
+      <header>
+        <a class="name" href="/">Jason Meng</a>
+
+        <nav aria-label="Main navigation">
+          {
+            navigation.map(({ label, href }) => {
+              const path = href.replace(/\/$/, "") || "/";
+              const active = currentPath === path;
+
+              return (
+                <a href={href} aria-current={active ? "page" : undefined}>
+                  {label}
+                </a>
+              );
+            })
+          }
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer>© {new Date().getFullYear()} Jason Meng</footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #343730;
+    background: #faf9f6;
+    font-synthesis: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .site {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 40px 32px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  header,
+  footer,
+  .eyebrow {
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+  }
+
+  .name {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 6px;
+  }
+
+  header a {
+    text-decoration: none;
+  }
+
+  nav a {
+    color: #73776e;
+  }
+
+  nav a[aria-current="page"] {
+    color: #343730;
+    text-decoration: underline;
+    text-decoration-color: #62735b;
+  }
+
+  header a:hover {
+    color: #343730;
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid #62735b;
+    outline-offset: 5px;
+  }
+
+  main {
+    min-height: 65vh;
+    padding: 96px 0 72px;
+  }
+
+  .eyebrow {
+    color: #62735b;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+  }
+
+  h1,
+  h2 {
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(40px, 7vw, 58px);
+    letter-spacing: -0.04em;
+    margin: 0 0 32px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 40px 0 20px;
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0 0 22px;
+  }
+
+  .placeholder {
+    font-size: 15px;
+    color: #73776e;
+    font-style: italic;
+  }
+
+  footer {
+    border-top: 1px solid #dedfd6;
+    padding-top: 24px;
+    color: #73776e;
+    font-size: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .site {
+      padding: 32px 24px 24px;
+    }
+
+    header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    nav {
+      gap: 12px 20px;
+    }
+
+    main {
+      padding: 64px 0 48px;
+    }
+  }
+</style>

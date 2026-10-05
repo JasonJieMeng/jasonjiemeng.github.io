@@ -1,0 +1,91 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const bookingUrl =
+  "https://bookings.cloud.microsoft/book/SU-Bookings-Mentoringsession@bookings.stanford.edu/?ismsaljsauthenabled";
+---
+
+<SiteLayout title="Mentoring">
+
+  <p>
+    I offer regular mentoring conversations for students and researchers, 
+    with a particular commitment to supporting students from disadvantaged backgrounds, 
+    queer students, and those from underrepresented racial and ethnic groups. 
+    I hope to make academic guidance more accessible to people who have had fewer opportunities to find mentorship.
+    </p>
+    <p>
+    People of all backgrounds are welcome. 
+    You can book a time using the link below—please share a little about yourself and what you’d like to discuss so I can come prepared.
+  </p>
+
+  <section class="booking" aria-labelledby="booking-title">
+    <h2 id="booking-title">Book a conversation</h2>
+
+    <p>
+      Choose an available time and tell me a little about yourself
+      and what you hope to get out of our conversation.
+    </p>
+
+    <a
+      class="booking-button"
+      href={bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View available times & book ↗
+    </a>
+
+    <p class="booking-note">
+      Opens Microsoft Bookings in a new tab.
+      Check the time zone shown before selecting a time.
+    </p>
+  </section>
+</SiteLayout>
+
+<style>
+  .booking {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #dedfd6;
+  }
+
+  .booking h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .booking-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 12px 20px;
+    border: 1px solid #62735b;
+    border-radius: 4px;
+    color: #343730;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 150ms ease;
+  }
+
+  .booking-button:hover {
+    background: #eeeee7;
+  }
+
+  .booking-button:focus-visible {
+    outline: 2px solid #62735b;
+    outline-offset: 5px;
+  }
+
+  .booking-note {
+    margin-top: 18px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    color: #73776e;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking-button {
+      transition: none;
+    }
+  }
+</style>

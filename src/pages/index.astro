@@ -1,17 +1,145 @@
 ---
-
+import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<SiteLayout title="About">
+  <div class="about">
+    <div class="about-text">
+
+      <p>
+        Welcome to my website!
+	</p>	
+
+
+	<p>
+		I’m a PhD candidate in Operations Research at Stanford University, co-advised by the amazing duo of 
+		Professors <a href="https://web.stanford.edu/~glynn/">Peter Glynn</a> and <a href="https://profiles.stanford.edu/blanchet">Jose Blanchet</a>.
+		I study reliable data-driven decision making in high-stake domains, with a focus on reinforcement learning and its applications in healthcare. 
+		I'm also part of the <a href="https://surf.stanford.edu/">Systems Utilization Research For (SURF) Stanford Medicine</a> team, 
+		where I work closely with Professor <a href="https://profiles.stanford.edu/david-scheinker">David Scheinker</a>.
+      </p>
+
+	  <div class="profile-links" aria-label="Profile and contact links">
+        <a href="/CV-JM.pdf">CV</a>
+        <span aria-hidden="true">/</span>
+        <a href="mailto:jiemeng@stanford.edu">Email (General)</a>
+        <span aria-hidden="true">/</span>
+        <a href="mailto:jameng@stanfordchildrens.org">Email (Healthcare)</a>
+		<span aria-hidden="true">/</span>
+        <a href="https://scholar.google.com/citations?user=hLTR5WEAAAAJ&hl=en">Google Scholar</a>
+        <span aria-hidden="true">/</span>
+        <a href="https://www.linkedin.com/in/jason-meng-951852324">LinkedIn</a>
+      </div>
+    </div>
+
+    <div
+  class="portrait-swap"
+  tabindex="0"
+  role="img"
+  aria-label="Portrait of Jason Meng; hover or focus to see an alternate photo"
+>
+  <img
+    class="portrait-primary"
+    src="/portrait.jpg"
+    alt=""
+    width="480"
+    height="600"
+  />
+  <img
+    class="portrait-alternate"
+    src="/portrait-hover.jpeg"
+    alt=""
+    width="480"
+    height="600"
+  />
+</div>
+  </div>
+</SiteLayout>
+
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .portrait-swap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .portrait-swap img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .portrait-alternate {
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  @media (hover: hover) {
+    .portrait-swap:hover .portrait-alternate {
+      opacity: 1;
+    }
+  }
+
+  .portrait-swap:focus-visible .portrait-alternate {
+    opacity: 1;
+  }
+
+  .portrait-swap:focus-visible {
+    outline: 2px solid #62735b;
+    outline-offset: 5px;
+  }
+
+  @media (max-width: 640px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .portrait-swap {
+      grid-row: 1;
+      width: 180px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-alternate {
+      transition: none;
+    }
+  }
+
+    .profile-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+  }
+
+  .profile-links a {
+    text-decoration: none;
+  }
+
+  .profile-links a:hover {
+    text-decoration: underline;
+  }
+
+  .profile-links span {
+    color: #73776e;
+  }
+</style>
