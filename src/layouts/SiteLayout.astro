@@ -5,8 +5,8 @@ const navigation = [
   { label: "About", href: "/" },
   { label: "Research", href: "/research/" },
   { label: "Mentoring", href: "/mentoring/" },
-//   { label: "Writing", href: "/writing/" },
-//   { label: "Miscellaneous", href: "/miscellaneous/" },
+  // { label: "Writing", href: "/writing/" },
+  // { label: "Miscellaneous", href: "/miscellaneous/" },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -17,10 +17,14 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+
     <meta
       name="description"
       content="Jason Meng — research, writing, mentoring, and other interests."
     />
+
     <title>{title} · Jason Meng</title>
   </head>
 
